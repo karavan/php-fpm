@@ -29,4 +29,4 @@ RUN sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS    90/' /etc/login.defs && \
 EXPOSE 9000
 
 WORKDIR /app
-CMD [ "php-fpm", "-F", "--pid", "/run/php-fpm.pid", "-y", "/etc/php/7.3/fpm/php-fpm.conf" ]
+CMD [ "php7-fpm", "-F", "--pid", "/run/php-fpm.pid", "-y", "/etc/php/7.3/fpm/php-fpm.conf" ]
