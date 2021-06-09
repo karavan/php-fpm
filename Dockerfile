@@ -1,4 +1,4 @@
-FROM docker.io/karavan/php-fpm:buster
+FROM docker.io/bitnami/minideb:buster
 LABEL maintainer "Karavan <admin@local.lo>"
 
 ENV OS_ARCH="amd64" \
@@ -6,6 +6,7 @@ ENV OS_ARCH="amd64" \
     OS_NAME="linux"
 
 COPY prebuildfs /
+COPY docker_opts.sh /services/docker_opts.sh
 # Install required system packages and dependencies
 RUN install_packages argon2 ca-certificates curl gzip libargon2-0 libargon2-0-dev \
 libbsd0 libbz2-1.0 libc6 libcom-err2 libcurl4 libexpat1 libffi6 libfftw3-double3 \
@@ -18,7 +19,8 @@ libpng16-16 libpq5 libpsl5 libreadline7 librtmp1 libsasl2-2 libsodium23 libsqlit
 libssh2-1 libssl1.1 libstdc++6 libsybdb5 libtasn1-6 libtidy5deb1 libtinfo6 libunistring2 \
 libuuid1 libwebp6 libx11-6 libxau6 libxcb1 libxdmcp6 libxext6 libxml2 libxslt1.1 libzip4 \
 procps tar wget zlib1g php-mongodb dh-php php-pear php-cli php-common php-curl php-dev \
-php-fpm php-gd php-json php-readline pkg-php-tools
+php-fpm php-gd php-json php-readline pkg-php-tools && \
+apt-get clean all
 
 RUN sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS    90/' /etc/login.defs && \
     sed -i 's/^PASS_MIN_DAYS.*/PASS_MIN_DAYS    0/' /etc/login.defs && \
