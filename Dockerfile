@@ -1,7 +1,8 @@
-FROM docker.io/bitnami/minideb:buster
+FROM debian:buster-slim
 LABEL maintainer "Karavan <admin@local.lo>"
 
-ENV OS_ARCH="amd64" \
+ENV DEBIAN_FRONTEND noninteractive \
+    OS_ARCH="amd64" \
     OS_FLAVOUR="debian-10" \
     OS_NAME="linux"
 
