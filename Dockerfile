@@ -26,7 +26,7 @@ apt-get clean all
 RUN sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS    90/' /etc/login.defs && \
     sed -i 's/^PASS_MIN_DAYS.*/PASS_MIN_DAYS    0/' /etc/login.defs && \
     sed -i 's/sha512/sha512 minlen=8/' /etc/pam.d/common-password && \
-    sed -Ei '/^listen =/a listen = 127.0.0.1:9000/' /etc/php/7.3/fpm/pool.d/www.conf
+    sed -Ei '/^listen =/a listen = 127.0.0.1:9000' /etc/php/7.3/fpm/pool.d/www.conf
 
 EXPOSE 9000
 
